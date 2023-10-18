@@ -39,5 +39,11 @@ Thumbs.db
 out/
 .idea/
 
+# Maven
+.mvn/
+*.cmd
+mvnw
+target/
+
 # Other
 *.txt
