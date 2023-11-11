@@ -25,49 +25,49 @@ public class Main {
                     5. Withdraw
                     6. Deposit
                     7. Remove account
-                    8. Exit
-                    """);
+                    8. Exit""");
 
             System.out.print("Enter your choice: ");
             choice = sc.nextInt();
             switch (choice) {
                 case 1:
-                    System.out.println("""
-                    Select account type:
+                    System.out.print("""
+                    
                     1. Personal
                     2. Deposit
                     3. Credit
-                    """);
+                    Select account type:\040""");
 
                     int accountType = sc.nextInt();
-                    System.out.print("Enter your name: ");
-                    String name = sc.next();
-                    System.out.print("Enter initial balance: ");
-                    double initialBalance = sc.nextDouble();
 
-                    switch (accountType) {
-                        case 1:
-                            if (initialBalance < 0) System.out.println("Balance can't be negative.");
-                            else {
-                                accounts.add(new Personal(name, "Personal", generateAccountNumber(), initialBalance));
-                            }
-                            break;
-                        case 2:
-                            if (initialBalance < 0) System.out.println("Balance can't be negative.");
-                            else {
-                                accounts.add(new Deposit(name, "Deposit", generateAccountNumber(), initialBalance));
-                            }
-                            break;
-                        case 3:
-                            if (initialBalance < 1000) System.out.println("Balance can't be less than 1000. " +
-                                    "If so, the debt will be paid from this amount.");
-                            else  {
-                                accounts.add(new Credit(name, "Credit", generateAccountNumber(), initialBalance));
-                            }
-                            break;
-                        default:
-                            System.out.println("Wrong choice.");
-                            break;
+
+                    if (accountType != 3) {
+                        System.out.print("Enter your name: ");
+                        String name = sc.next();
+                        System.out.print("Enter initial balance: ");
+                        double initialBalance = sc.nextDouble();
+
+                        switch (accountType) {
+                            case 1:
+                                if (initialBalance < 0) System.out.println("Balance can't be negative.");
+                                else {
+                                    accounts.add(new Personal(name, "Personal", generateAccountNumber(), initialBalance));
+                                }
+                                break;
+                            case 2:
+                                if (initialBalance < 0) System.out.println("Balance can't be negative.");
+                                else {
+                                    accounts.add(new Deposit(name, "Deposit", generateAccountNumber(), initialBalance));
+                                }
+                                break;
+                            default:
+                                System.out.println("Wrong choice.");
+                        }
+                    } else {
+                        System.out.print("Enter your name: ");
+                        String name = sc.next();
+
+                        accounts.add(new Credit(name, "Credit", generateAccountNumber(), 0));
                     }
                     break;
 
@@ -86,8 +86,8 @@ public class Main {
                         if (switchAccountIndex >= 0 && switchAccountIndex < accounts.size()) {
                             activeAccountIndex = switchAccountIndex;
                             System.out.println("Switched to account: " + accounts.get(activeAccountIndex).accountType +
-                                    " " + accounts.get(activeAccountIndex).accountNumber + "\n");
-                        } else System.out.println("No accounts available. Please create an account first.");
+                                    " " + accounts.get(activeAccountIndex).accountNumber);
+                        } else System.out.println("\nNo accounts available. Please create an account first.");
                         break;
                     }
 
@@ -95,30 +95,46 @@ public class Main {
                     if (activeAccountIndex != -1) {
                         MainBank activeAccount = (MainBank) accounts.get(activeAccountIndex);
                         activeAccount.showAccount();
-                    } else System.out.println("No active account. Please switch to an account first.");
+                    } else System.out.println("\nNo active account. Please switch to an account first.");
                     break;
                 case 4:
-                    if (activeAccountIndex != 1) {
+                    if (activeAccountIndex != -1) {
                         MainBank activeAccount = (MainBank) accounts.get(activeAccountIndex);
                         activeAccount.getBalanceInfo();
-                    } else System.out.println("No active account. Please switch to an account first.");
+                    } else System.out.println("\nNo active account. Please switch to an account first.");
                     break;
-                case 5:
-                    if (activeAccountIndex != 1) {
+                // withdraw
+                    case 5:
+                    if (activeAccountIndex != -1) {
                         MainBank activeAccount = (MainBank) accounts.get(activeAccountIndex);
-                        System.out.print("How much money would you like to withdraw?");
-                        int amount = sc.nextInt();
-                        activeAccount.withdraw(amount);
-                    } else System.out.println("No active account. Please switch to an account first.");
+
+                        // if credit account is active
+                        if (activeAccount instanceof Credit) {
+                            System.out.print("""
+                            
+                            !!!Remember: the credit rate is 10% upon return!!!
+                            Enter amount to withdraw from credit account:\040""");
+
+                            double amount = sc.nextDouble();
+
+                            activeAccount.withdraw(amount);
+                        } else {
+                            System.out.print("Enter amount to withdraw from account: ");
+                            double amount = sc.nextDouble();
+                            activeAccount.withdraw(amount);
+                        }
+                    } else System.out.println("\nNo active account. Please switch to an account first.");
                     break;
+                // deposit
                 case 6:
-                    if (activeAccountIndex != 1) {
+                    if (activeAccountIndex != -1) {
                         MainBank activeAccount = (MainBank) accounts.get(activeAccountIndex);
-                        System.out.print("How much money would you like to deposit?");
+                        System.out.print("Enter amount to deposit: ");
                         int amount = sc.nextInt();
                         activeAccount.deposit(amount);
-                    } else System.out.println("No active account. Please switch to an account first.");
+                    } else System.out.println("\nNo active account. Please switch to an account first.");
                     break;
+                // delete account
                 case 7:
                     System.out.println("Select the account from you want to delete from the list: ");
 
