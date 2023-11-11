@@ -7,24 +7,26 @@ public class Personal extends Account implements MainBank {
 
     @Override
     public void getBalanceInfo() {
-        System.out.printf("Balance: $%.2f", balance);
+        System.out.printf("Balance: $%.2f \n", balance);
     }
 
     @Override
     public void withdraw(double amount) {
-        balance -= amount;
-        System.out.printf("""
-                You have withdrawn $%d
-                Your new balance: $%d
+        if (amount <= balance) {
+            balance -= amount;
+            System.out.printf("""
+                You have withdrawn $%.2f
+                Your new balance: $%.2f
                 """, amount, balance);
+        } else System.out.println("There are not enough funds on the account");
     }
 
     @Override
     public void deposit(double amount) {
         balance += amount;
         System.out.printf("""
-                You have deposited $%d
-                Your new balance: $%d
+                You have deposited $%.2f
+                Your new balance: $%.2f
                 """, amount, balance);
     }
 

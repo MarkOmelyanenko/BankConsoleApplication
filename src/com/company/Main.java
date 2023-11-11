@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         System.out.println("----------Banking Application Started----------");
 
@@ -17,7 +17,7 @@ public class Main {
         int choice;
         do {
             System.out.println("""
-                    
+                                        
                     1. Create a new account
                     2. Switch to another account
                     3. Show account details
@@ -32,42 +32,35 @@ public class Main {
             switch (choice) {
                 case 1:
                     System.out.print("""
-                    
-                    1. Personal
-                    2. Deposit
-                    3. Credit
-                    Select account type:\040""");
+                                                
+                            1. Personal
+                            2. Deposit
+                            3. Credit
+                            Select account type:\040""");
 
                     int accountType = sc.nextInt();
 
+                    System.out.print("Enter your name: ");
+                    String name = sc.next();
 
-                    if (accountType != 3) {
-                        System.out.print("Enter your name: ");
-                        String name = sc.next();
-                        System.out.print("Enter initial balance: ");
-                        double initialBalance = sc.nextDouble();
-
-                        switch (accountType) {
-                            case 1:
-                                if (initialBalance < 0) System.out.println("Balance can't be negative.");
-                                else {
-                                    accounts.add(new Personal(name, "Personal", generateAccountNumber(), initialBalance));
-                                }
-                                break;
-                            case 2:
-                                if (initialBalance < 0) System.out.println("Balance can't be negative.");
-                                else {
-                                    accounts.add(new Deposit(name, "Deposit", generateAccountNumber(), initialBalance));
-                                }
-                                break;
-                            default:
-                                System.out.println("Wrong choice.");
-                        }
-                    } else {
-                        System.out.print("Enter your name: ");
-                        String name = sc.next();
-
-                        accounts.add(new Credit(name, "Credit", generateAccountNumber(), 0));
+                    switch (accountType) {
+                        case 1:
+                            System.out.print("Enter initial balance: ");
+                            double initialBalance = sc.nextDouble();
+                            if (initialBalance < 0) System.out.println("Balance can't be negative.");
+                            else {
+                                accounts.add(new Personal(name, "Personal", generateAccountNumber(), initialBalance));
+                            }
+                            break;
+                        case 2:
+                            accounts.add(new Deposit(name, "Deposit", generateAccountNumber(), 0));
+                            break;
+                        case 3:
+                            accounts.add(new Credit(name, "Credit", generateAccountNumber(), 0));
+                            break;
+                        default:
+                            System.out.println("Wrong choice.");
+                            break;
                     }
                     break;
 
@@ -104,16 +97,16 @@ public class Main {
                     } else System.out.println("\nNo active account. Please switch to an account first.");
                     break;
                 // withdraw
-                    case 5:
+                case 5:
                     if (activeAccountIndex != -1) {
                         MainBank activeAccount = (MainBank) accounts.get(activeAccountIndex);
 
                         // if credit account is active
                         if (activeAccount instanceof Credit) {
                             System.out.print("""
-                            
-                            !!!Remember: the credit rate is 10% upon return!!!
-                            Enter amount to withdraw from credit account:\040""");
+                                                                
+                                    !!!Remember: the credit rate is 10% upon return!!!
+                                    Enter amount to withdraw from credit account:\040""");
 
                             double amount = sc.nextDouble();
 
@@ -154,7 +147,7 @@ public class Main {
 
                     break;
                 case 8:
-                    System.out.println("Exiting program...");
+                    System.out.println("\nExiting program...");
                     break;
                 default:
                     System.out.println("Wrong choice.");

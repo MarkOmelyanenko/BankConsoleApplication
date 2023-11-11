@@ -5,7 +5,7 @@ public class Credit extends Account implements MainBank {
     private final double creditRate = 0.1;
 
     public Credit(String name, String accountType, String accountNumber, double initialBalance) {
-        super(name,accountType, accountNumber, initialBalance);
+        super(name, accountType, accountNumber, initialBalance);
     }
 
     // TODO: print negative balance if user has a debt
@@ -20,10 +20,10 @@ public class Credit extends Account implements MainBank {
             balance -= amount;
             debt = (amount * creditRate) + amount;
             System.out.printf("""
-                
-                You have withdrawn $%.2f
-                Your debt: $%.2f
-                """, amount, debt);
+                                    
+                    You have withdrawn $%.2f
+                    Your debt: $%.2f
+                    """, amount, debt);
         } else System.out.println("You have a debt! Pay it off first!");
     }
 
@@ -34,24 +34,24 @@ public class Credit extends Account implements MainBank {
             balance += amount;
             debt -= amount;
             System.out.printf("""
-                
-                You have deposited $%.2f
-                Your debt: $%.2f
-                """, amount, debt);
+                                    
+                    You have deposited $%.2f
+                    Your debt: $%.2f
+                    """, amount, debt);
         }
     }
 
     @Override
     public void showAccount() {
         System.out.printf("""
-                
-                -----Account info-----
-                Name: %s
-                Account type: %s
-                Account number: %s
-                Debt: $%.2f
-                Credit rate: %.2f%%
-                """, name, accountType, accountNumber,
+                                        
+                        -----Account info-----
+                        Name: %s
+                        Account type: %s
+                        Account number: %s
+                        Debt: $%.2f
+                        Credit rate: %.2f%%
+                        """, name, accountType, accountNumber,
                 debt, creditRate * 100);
     }
 }
