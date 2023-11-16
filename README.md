@@ -8,7 +8,62 @@ The Java program developed here is to implement bank functionality using OOP. Th
 
 </header>
 
+## OOP using
 
+I use 3 principles of OOP: Inheritance, Polymorphism, and Encapsulation.
+
+#### Inheritance
+I have 3 types of accounts: personal, deposit, and credit. They have common fields such as name, account type, account number, and balance. The Account class has a constructor:
+```
+public Account(String name, String accountType, String accountNumber, double balance) {
+        this.name = name;
+        this.accountType = accountType;
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+}
+```
+If the base class has a constructor, its subclasses must call it.
+
+Personal:
+```
+public Personal(String name, String accountType, String accountNumber, double initialBalance) {
+        super(name,accountType, accountNumber, initialBalance);
+}
+```
+Deposit:
+```
+public Deposit(String name, String accountType, String accountNumber, double initialBalance) {
+        super(name, accountType, accountNumber, initialBalance);
+}
+```
+Credit:
+```
+public Credit(String name, String accountType, String accountNumber, double initialBalance) {
+        super(name, accountType, accountNumber, initialBalance);
+}
+```
+
+#### Polymorphism
+My classes `Personal`, `Deposit`, `Credit` have common functionality, but are implemented differently. So I created the MainBank interface:
+```
+interface MainBank {
+    void getBalanceInfo();
+    void withdraw(double amount);
+    void deposit(double amount) throws InterruptedException;
+    void showAccount();
+}
+```
+
+#### Encapsulation
+I used encapsulation because, for example, the `Credit` class has `debt` and `creditRate` variables, which should not be visible from anywhere in the program. Therefore, I used the access modifier `private`:
+```
+private double debt = 0;
+private final double creditRate = 0.1;
+```
+Encapsulation is also used in the Deposit class:
+```
+private final double depositRate = 0.05;
+```
 
 ## Example of UML diagram:
 <p align="center"><img align="center" src="https://github.com/dataproctech/long-term-project-java-MarkOmelyanenko-1/blob/main/uml.png?raw=true" height="300" width="400" /></p>
