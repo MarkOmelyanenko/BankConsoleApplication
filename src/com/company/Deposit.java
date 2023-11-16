@@ -30,6 +30,7 @@ public class Deposit extends Account implements MainBank {
         System.out.println("!!!Every 1 second up to 5 seconds your " +
                 "deposit will increase by 5%!!!");
 
+        // earning % on deposit funds(every second +5%)
         for (int i = 1; i <= 5; i++) {
             Thread.sleep(1000);
             System.out.println(i + "s passed...");

@@ -17,7 +17,7 @@ public class Credit extends Account implements MainBank {
     public void withdraw(double amount) {
         if (debt == 0) {
             balance -= amount;
-            debt = (amount * creditRate) + amount;
+            debt = (amount * creditRate) + amount; // debt calculating
             System.out.printf("""
                                     
                     You have withdrawn $%.2f
@@ -31,7 +31,7 @@ public class Credit extends Account implements MainBank {
         if (debt == 0) System.out.println("You have no dept to make deposit.");
         else {
             balance += amount;
-            debt -= amount;
+            debt -= amount; // debt calculating
             System.out.printf("""
                                     
                     You have deposited $%.2f

@@ -11,7 +11,7 @@ public class Driver {
         System.out.println("----------Banking Application Started----------");
 
         Scanner sc = new Scanner(System.in);
-        ArrayList<Account> accounts = new ArrayList<>();
+        ArrayList<Account> accounts = new ArrayList<>(); // list of accounts
         int activeAccountIndex = -1; // index of active account
 
         int choice;
@@ -30,6 +30,7 @@ public class Driver {
             System.out.print("Enter your choice: ");
             choice = sc.nextInt();
             switch (choice) {
+                // create an account
                 case 1:
                     System.out.print("""
                                                 
@@ -64,7 +65,8 @@ public class Driver {
                     }
                     break;
 
-                case 2:
+                    // account switch
+                    case 2:
                     if (!accounts.isEmpty()) {
                         System.out.println("List of accounts: ");
 
@@ -84,6 +86,7 @@ public class Driver {
                         break;
                     }
 
+                // show active account details
                 case 3:
                     if (activeAccountIndex != -1) {
                         MainBank activeAccount = (MainBank) accounts.get(activeAccountIndex);
@@ -96,6 +99,7 @@ public class Driver {
                         activeAccount.getBalanceInfo();
                     } else System.out.println("\nNo active account. Please switch to an account first.");
                     break;
+
                 // withdraw
                 case 5:
                     if (activeAccountIndex != -1) {
@@ -118,6 +122,7 @@ public class Driver {
                         }
                     } else System.out.println("\nNo active account. Please switch to an account first.");
                     break;
+
                 // deposit
                 case 6:
                     if (activeAccountIndex != -1) {
@@ -127,6 +132,7 @@ public class Driver {
                         activeAccount.deposit(amount);
                     } else System.out.println("\nNo active account. Please switch to an account first.");
                     break;
+
                 // delete account
                 case 7:
                     System.out.println("Select the account from you want to delete from the list: ");
@@ -144,8 +150,9 @@ public class Driver {
                                 " " + accounts.get(deleteAccountIndex).accountNumber + "\n");
                         accounts.remove(deleteAccountIndex);
                     } else System.out.println("Wrong choice.");
-
                     break;
+
+                // exit program
                 case 8:
                     System.out.println("\nExiting program...");
                     break;
@@ -163,6 +170,7 @@ public class Driver {
         Random random = new Random();
         StringBuilder sb = new StringBuilder(16);
 
+        // get 16 random numbers
         for (int i = 0; i < 16; i++) {
             sb.append(random.nextInt(10));
         }

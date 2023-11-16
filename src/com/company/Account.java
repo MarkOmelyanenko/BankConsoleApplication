@@ -1,5 +1,6 @@
 package com.company;
 
+// class to highlight common variables between Personal, Deposit, Credit classes
 class Account {
     protected String name, accountType, accountNumber;
     protected double balance;
