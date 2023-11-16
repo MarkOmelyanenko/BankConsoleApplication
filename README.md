@@ -44,7 +44,7 @@ public Credit(String name, String accountType, String accountNumber, double init
 ```
 
 #### Polymorphism
-My classes `Personal`, `Deposit`, `Credit` have common functionality, but are implemented differently. So I created the MainBank interface:
+My classes `Personal`, `Deposit`, and `Credit` have common features, but are implemented differently. So I created the MainBank interface:
 ```
 interface MainBank {
     void getBalanceInfo();
