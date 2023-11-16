@@ -8,7 +8,6 @@ public class Credit extends Account implements MainBank {
         super(name, accountType, accountNumber, initialBalance);
     }
 
-    // TODO: print negative balance if user has a debt
     @Override
     public void getBalanceInfo() {
         System.out.println("Your balance: " + balance + "$");
