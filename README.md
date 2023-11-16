@@ -11,7 +11,7 @@ The Java program developed here is to implement bank functionality using OOP. Th
 
 
 ## Example of UML diagram:
-<p align="center"><img align="center" src="[https://github.com/akakiev/long-term-project-bank-java/blob/main/b1.png](https://github.com/dataproctech/long-term-project-java-MarkOmelyanenko-1/blob/main/uml.png)" height="300" width="400" /></p>
+<p align="center"><img align="center" src="https://github.com/dataproctech/long-term-project-java-MarkOmelyanenko-1/blob/main/uml.png?raw=true" height="300" width="400" /></p>
 
 <footer>
 
