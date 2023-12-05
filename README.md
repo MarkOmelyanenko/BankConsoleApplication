@@ -67,13 +67,3 @@ private final double depositRate = 0.05;
 
 ## Example of UML diagram:
 <p align="center"><img align="center" src="https://github.com/dataproctech/long-term-project-java-MarkOmelyanenko-1/blob/main/uml.png?raw=true" height="300" width="400" /></p>
-
-<footer>
-
----
-
-Get help: [TBD-support](TBD-support-link) &bull; [Review the GitHub status page](https://www.githubstatus.com/)
-
-&copy; 2023 TBD-copyright-holder &bull; [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [MIT License](https://gh.io/mit)
-
-</footer>
